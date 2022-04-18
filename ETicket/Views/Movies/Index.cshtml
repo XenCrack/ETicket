@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Movie>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src="@item.ImageUrl" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        @item.Name
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="float-right">Düzenle</a>
+                        }
+                    </h5>
+                    <p class="card-text">@(item.Description)...</p>
+                    <p class="card-text">@item.StartDate - @item.EndDate</p>
+                    <p class="card-text">@item.Price</p>
+                    <p class="card-text">@item.Cinema.Name</p>
+                    <a href="#" class="btn btn-primary">Satın Al</a>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text">
+                        <a class="btn btn-outline-primary" asp-action="Detail" asp-route-id="@item.Id">Detay</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

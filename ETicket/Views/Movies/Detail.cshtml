@@ -1,0 +1,46 @@
+﻿@model Movie
+
+<div class="row">
+    <div class="card">
+        <div class="col-md-12">
+            <div class="card-header">
+                <h4 class="card-title">@Model.Name</h4>
+                @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="float-right">Düzenle</a>
+                }
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <img src="@Model.ImageUrl" class="" />
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+                <p class="card-text">@Model.Description</p>
+                <p class="card-text">@Model.Cinema.Name</p>
+                <p class="card-text">@Model.Producter.FullName</p>
+                <p class="card-text">@Model.MovieType.Name</p>
+                <p class="card-text">@Model.StartDate.ToString("dddd MMMM yyyy")</p>
+                <p class="card-text">@Model.EndDate</p>
+                <p class="card-text">
+                    <b>Durum: </b>
+                    @if(DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                    {
+                        <span class="badge bg-success text-white">GÖSTERİMDE</span>
+                    }else if(DateTime.Now > Model.EndDate)
+                    {
+                        <span class="badge bg-danger text-white">GÖSTERİMDEN KALKTI</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-primary text-white">GELECEK</span>
+                    }
+                </p>
+            </div>
+        </div>
+
+        <div class="card-footer"></div>
+    </div>
+</div>

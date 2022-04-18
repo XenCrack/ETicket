@@ -1,0 +1,61 @@
+﻿@using ETicket.Data.ViewModels
+@model MovieViewModel
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Yeni Film Ekle</h2>
+        <div class="row">
+            <div class="col-md-10">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StartDate" class="control-label"></label>
+                        <input asp-for="StartDate" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EndDate" class="control-label"></label>
+                        <input asp-for="EndDate" class="form-control" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CinemaId" class="control-label"></label>
+                        <select asp-for="CinemaId" class="form-control" asp-items="ViewBag.Cinemas">
+                            <option>Seçiniz...</option>
+                        </select>
+                        <span asp-validation-for="CinemaId" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="ProductorId" class="control-label"></label>
+                        <select asp-for=ProductorId class="form-control" asp-items="ViewBag.Productors"></select>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="TypeId" class="control-label"></label>
+                        <select asp-for="TypeId" class="form-control" asp-items="ViewBag.MovieTypes" multiple></select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {    
+    <partial name="_ValidationScriptsPartial">    
+}

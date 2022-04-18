@@ -1,0 +1,11 @@
+﻿@if(!User.Identity.IsAuthenticated){
+    <a class="btn btn-danger" asp-controller="Account" asp-action="Login">Giriş</a>
+    <a class="btn btn-warning" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+}else{
+    
+    <form asp-action="Logout" asp-controller="Account">
+        <button class="btn btn-danger">
+            Çıkış
+        </button>
+    </form>
+}

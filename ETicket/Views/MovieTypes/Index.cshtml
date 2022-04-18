@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MovieType>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <a asp-action="Create">Tür Ekle</a>
+        }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <th>İşlemler</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <td class="align-middle">
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                                    <a asp-action="Detail" asp-route-id="@item.Id">Detay</a>
+                                </td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+</div>
